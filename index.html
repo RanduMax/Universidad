@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta de Verificación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin: 10px 0;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            font-size: 16px;
+        }
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            font-size: 16px;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Encuesta de Verificación</h1>
+        <form id="encuestaForm">
+            <div class="form-group">
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="edad">Edad:</label>
+                <input type="number" id="edad" name="edad" min="18" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pais">País de Origen:</label>
+                <select id="pais" name="pais" required>
+                    <option value="">Selecciona tu país</option>
+                    <option value="Perú">Perú</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <button type="button" onclick="validarFormulario()">Enviar</button>
+            </div>
+
+            <div class="error" id="error-message"></div>
+        </form>
+    </div>
+
+    <script>
+        function validarFormulario() {
+            var nombre = document.getElementById('nombre').value;
+            var edad = document.getElementById('edad').value;
+            var pais = document.getElementById('pais').value;
+            var errorMessage = document.getElementById('error-message');
+
+            // Limpiar mensajes de error previos
+            errorMessage.innerHTML = '';
+
+            // Validación de los datos
+            if (edad < 18) {
+                errorMessage.innerHTML = 'Debes ser mayor de 18 años para continuar.';
+                return false;
+            }
+
+            if (pais !== 'Perú') {
+                errorMessage.innerHTML = 'Debes ser peruano para continuar.';
+                return false;
+            }
+
+            // Si todo está bien, redirigir a felicidades.html
+            window.location.href = 'Ubicacion.html';
+        }
+    </script>
+
+</body>
+</html>
